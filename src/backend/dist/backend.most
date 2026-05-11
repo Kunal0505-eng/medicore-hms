@@ -1,0 +1,559 @@
+// Version: 1.0.0
+type AppointmentId__729317175 = Nat;
+type AppointmentStatus__105197975 =
+  {#Cancelled; #Completed; #Confirmed; #InProgress; #Scheduled};
+type AppointmentType__287101435 = {#OPD; #Telemedicine};
+type Appointment__198984327 =
+  {
+    appointmentType : AppointmentType__287101435;
+    cancellationReason : ?Text;
+    createdAt : Timestamp__301639476;
+    date : Text;
+    doctorId : DoctorId__139287351;
+    id : AppointmentId__729317175;
+    notes : ?Text;
+    patientId : PatientId__602936852;
+    status : AppointmentStatus__105197975;
+    timeSlot : Text;
+    tokenNumber : Nat
+  };
+type AuditLog__1051802162 =
+  {
+    action : Text;
+    details : Text;
+    entityId : Text;
+    entityType : Text;
+    id : Nat;
+    timestamp : Timestamp__301639476;
+    userId : UserId__158757552
+  };
+type BedId__807455421 = Nat;
+type BedStatus__751157348 = {#Available; #Maintenance; #Occupied; #Reserved};
+type Bed__47524202 =
+  {
+    bedNumber : Text;
+    housekeepingStatus : HousekeepingStatus__269742539;
+    id : BedId__807455421;
+    notes : ?Text;
+    patientId : ?PatientId__602936852;
+    status : BedStatus__751157348;
+    wardId : WardId__688935991
+  };
+type BillId__994444545 = Nat;
+type BillItem__696848787 =
+  {
+    quantity : Nat;
+    serviceId : ServiceId__271116140;
+    serviceName : Text;
+    total : Nat;
+    unitPrice : Nat
+  };
+type BillStatus__205254576 = {#Paid; #PartiallyPaid; #Pending; #Refunded};
+type BillType__793138617 = {#IPD; #OPD};
+type Bill__951628961 =
+  {
+    billType : BillType__793138617;
+    createdAt : Timestamp__301639476;
+    discountPercent : Nat;
+    id : BillId__994444545;
+    insuranceClaimId : ?Text;
+    items : [BillItem__696848787];
+    paidAmount : Nat;
+    patientId : PatientId__602936852;
+    paymentMode : ?PaymentMode__680672519;
+    status : BillStatus__205254576;
+    subtotal : Nat;
+    totalAmount : Nat;
+    visitId : ?VisitId__937110462
+  };
+type ConsumableId__804549581 = Nat;
+type Consumable__70951173 =
+  {
+    id : ConsumableId__804549581;
+    name : Text;
+    quantity : Nat;
+    reorderLevel : Nat;
+    supplierId : ?SupplierId__1029492484;
+    unitCost : Nat
+  };
+type DiagnosisType__359593805 = {#Primary; #Secondary};
+type Diagnosis__1063006720 =
+  {
+    description : Text;
+    diagnosisType : DiagnosisType__359593805;
+    icd10Code : Text
+  };
+type DoctorId__139287351 = Nat;
+type DoctorProfile__232778670 =
+  {
+    consultationFee : Nat;
+    departmentId : ?Text;
+    id : DoctorId__139287351;
+    qualifications : [Text];
+    schedule : [WorkingHours__696240338];
+    specialization : Text;
+    userId : UserId__158757552;
+    wardIds : [Text]
+  };
+type DrugId__931693695 = Nat;
+type Drug__284926595 =
+  {
+    batchNo : Text;
+    category : Text;
+    costPrice : Nat;
+    dosageForm : Text;
+    expiryDate : Text;
+    genericName : Text;
+    id : DrugId__931693695;
+    isActive : Bool;
+    name : Text;
+    quantityOnHand : Nat;
+    reorderLevel : Nat;
+    sellingPrice : Nat;
+    strength : Text;
+    supplierId : ?SupplierId__1029492484
+  };
+type DutyRosterId__1028476834 = Nat;
+type DutyRoster__703286652 =
+  {
+    date : Text;
+    id : DutyRosterId__1028476834;
+    shift : ShiftType__257122675;
+    status : Text;
+    userId : UserId__158757552;
+    wardId : ?WardId__688935991
+  };
+type ERStatus__761032010 = {#Discharged; #InTreatment; #Waiting};
+type ERTriageId__541030662 = Nat;
+type ERTriage__559355665 =
+  {
+    arrivalTime : Timestamp__301639476;
+    bedId : ?BedId__807455421;
+    chiefComplaint : Text;
+    dischargedAt : ?Timestamp__301639476;
+    esiLevel : Int;
+    id : ERTriageId__541030662;
+    isTraumaCase : Bool;
+    isUnknownPatient : Bool;
+    patientId : ?PatientId__602936852;
+    status : ERStatus__761032010;
+    treatedByDoctorId : ?DoctorId__139287351
+  };
+type EquipmentId__557226834 = Nat;
+type EquipmentItem__1045527834 =
+  {
+    category : Text;
+    cost : Nat;
+    id : EquipmentId__557226834;
+    name : Text;
+    nextServiceDate : ?Text;
+    purchaseDate : Text;
+    serialNumber : Text;
+    status : EquipmentStatus__299983223;
+    wardId : ?WardId__688935991
+  };
+type EquipmentStatus__299983223 = {#Active; #Decommissioned; #InMaintenance};
+type HospitalProfile__809381767 =
+  {
+    address : Text;
+    branding : ?Text;
+    currency : Text;
+    email : Text;
+    id : Nat;
+    logoUrl : ?Text;
+    name : Text;
+    phone : Text;
+    registrationNo : Text;
+    timezone : Text
+  };
+type HousekeepingStatus__269742539 = {#Clean; #Dirty; #InProgress};
+type ImagingType__65544125 = {#CT; #MRI; #Other; #Ultrasound; #XRay};
+type IndentId__530771569 = Nat;
+type IndentItem__18177345 = {itemId : Nat; itemName : Text; quantity : Nat};
+type IndentRequest__220370090 =
+  {
+    createdAt : Timestamp__301639476;
+    id : IndentId__530771569;
+    items : [IndentItem__18177345];
+    requestedById : UserId__158757552;
+    status : IndentStatus__741827648
+  };
+type IndentStatus__741827648 = {#Approved; #Fulfilled; #Pending; #Rejected};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type LabOrderId__854765814 = Nat;
+type LabOrder__46959155 =
+  {
+    createdAt : Timestamp__301639476;
+    doctorId : DoctorId__139287351;
+    id : LabOrderId__854765814;
+    isCritical : Bool;
+    notes : ?Text;
+    patientId : PatientId__602936852;
+    referenceRange : ?Text;
+    resultEnteredAt : ?Timestamp__301639476;
+    resultFile : ?Text;
+    resultValue : ?Text;
+    sampleCollectedAt : ?Timestamp__301639476;
+    status : LabStatus__723841478;
+    testName : Text;
+    testType : Text;
+    visitId : ?VisitId__937110462
+  };
+type LabStatus__723841478 =
+  {#Ordered; #Processing; #Reported; #ResultReady; #SampleCollected};
+type LeaveRequestId__1047857620 = Nat;
+type LeaveRequest__636736667 =
+  {
+    createdAt : Timestamp__301639476;
+    endDate : Text;
+    id : LeaveRequestId__1047857620;
+    reason : Text;
+    startDate : Text;
+    status : LeaveStatus__776649881;
+    userId : UserId__158757552
+  };
+type LeaveStatus__776649881 = {#Approved; #Pending; #Rejected};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NotificationId__307495059 = Nat;
+type NotificationPriority__169660318 = {#Critical; #Normal};
+type NotificationType__185411214 =
+  {
+    #AppointmentReminder;
+    #CriticalLabAlert;
+    #DrugExpiryAlert;
+    #General;
+    #LowStockAlert;
+    #ShiftReminder
+  };
+type Notification__766161334 =
+  {
+    createdAt : Timestamp__301639476;
+    id : NotificationId__307495059;
+    isRead : Bool;
+    message : Text;
+    notificationType : NotificationType__185411214;
+    priority : NotificationPriority__169660318;
+    relatedId : ?Text;
+    title : Text;
+    userId : UserId__158757552
+  };
+type POItem__34487579 =
+  {drugId : DrugId__931693695; quantity : Nat; unitCost : Nat};
+type POStatus__682163743 = {#Cancelled; #Draft; #Received; #Submitted};
+type PatientId__602936852 = Nat;
+type PatientStatus__743994690 = {#Admitted; #Discharged; #OPD; #Transferred};
+type Patient__627400254 =
+  {
+    address : Text;
+    admissionDate : ?Timestamp__301639476;
+    admittedBedId : ?BedId__807455421;
+    allergies : [Text];
+    bloodGroup : Text;
+    createdAt : Timestamp__301639476;
+    dischargeDate : ?Timestamp__301639476;
+    dob : Text;
+    email : Text;
+    emergencyContact : Text;
+    firstName : Text;
+    gender : Text;
+    id : PatientId__602936852;
+    insuranceId : ?Text;
+    insuranceProvider : ?Text;
+    lastName : Text;
+    mrn : Text;
+    phone : Text;
+    photoUrl : ?Text;
+    status : PatientStatus__743994690;
+    wardId : ?WardId__688935991
+  };
+type PaymentMode__680672519 = {#Card; #Cash; #Insurance; #UPI};
+type PrescriptionStatus__744712220 = {#Dispensed; #Pending};
+type Prescription__921555583 =
+  {
+    dosageForm : Text;
+    dose : Text;
+    drugId : ?DrugId__931693695;
+    drugName : Text;
+    duration : Text;
+    frequency : Text;
+    notes : ?Text;
+    status : PrescriptionStatus__744712220
+  };
+type PurchaseOrderId__946010564 = Nat;
+type PurchaseOrder__673738378 =
+  {
+    createdAt : Timestamp__301639476;
+    expectedDelivery : ?Text;
+    id : PurchaseOrderId__946010564;
+    items : [POItem__34487579];
+    status : POStatus__682163743;
+    supplierId : SupplierId__1029492484
+  };
+type RadiologyOrderId__620101548 = Nat;
+type RadiologyOrder__348311648 =
+  {
+    bodyPart : Text;
+    clinicalIndication : Text;
+    createdAt : Timestamp__301639476;
+    doctorId : DoctorId__139287351;
+    findings : ?Text;
+    id : RadiologyOrderId__620101548;
+    imagingType : ImagingType__65544125;
+    patientId : PatientId__602936852;
+    radiologistId : ?UserId__158757552;
+    reportUrl : ?Text;
+    status : RadiologyStatus__220150954
+  };
+type RadiologyStatus__220150954 =
+  {#ImagingDone; #Ordered; #ReportReady; #Reported};
+type SOAPNotes__443680227 =
+  {assessment : Text; objective : Text; plan : Text; subjective : Text};
+type ServiceId__271116140 = Nat;
+type Service__863578874 =
+  {
+    basePrice : Nat;
+    category : Text;
+    id : ServiceId__271116140;
+    isActive : Bool;
+    name : Text
+  };
+type ShiftType__257122675 = {#Afternoon; #Morning; #Night};
+type SupplierId__1029492484 = Nat;
+type Supplier__31340649 =
+  {
+    address : Text;
+    categories : [Text];
+    email : Text;
+    id : SupplierId__1029492484;
+    name : Text;
+    paymentTerms : Text;
+    phone : Text
+  };
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Timestamp__301639476 = Time__900049286;
+type UserId__158757552 = Nat;
+type UserRole__451090586 =
+  {
+    #Doctor;
+    #LabTechnician;
+    #Nurse;
+    #Patient;
+    #Pharmacist;
+    #Receptionist;
+    #SuperAdmin
+  };
+type UserStatus__418351110 = {#Active; #Inactive; #Suspended};
+type User__640040378 =
+  {
+    createdAt : Timestamp__301639476;
+    departmentId : ?Text;
+    email : Text;
+    id : UserId__158757552;
+    name : Text;
+    principal : Principal;
+    role : UserRole__451090586;
+    status : UserStatus__418351110
+  };
+type VisitId__937110462 = Nat;
+type Visit__71828991 =
+  {
+    chiefComplaint : Text;
+    createdAt : Timestamp__301639476;
+    diagnoses : [Diagnosis__1063006720];
+    doctorId : DoctorId__139287351;
+    documentUrls : [Text];
+    id : VisitId__937110462;
+    patientId : PatientId__602936852;
+    prescriptions : [Prescription__921555583];
+    soapNotes : SOAPNotes__443680227;
+    visitDate : Timestamp__301639476;
+    vitals : ?VitalSigns__947277768
+  };
+type VitalSigns__947277768 =
+  {
+    bp : Text;
+    height : Text;
+    pulse : Text;
+    recordedAt : Timestamp__301639476;
+    spo2 : Text;
+    temperature : Text;
+    weight : Text
+  };
+type WardId__688935991 = Nat;
+type WardType__604439869 = {#Emergency; #General; #ICU; #Maternity; #Private};
+type Ward__116107700 =
+  {
+    id : WardId__688935991;
+    inchargeNurseId : ?UserId__158757552;
+    isActive : Bool;
+    name : Text;
+    totalBeds : Nat;
+    wardType : WardType__604439869
+  };
+type WorkingHours__696240338 =
+  {dayOfWeek : Nat; endTime : Text; maxPatients : Nat; startTime : Text};
+actor {
+  stable appointments :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Appointment__198984327]];
+      var elementIndex : Nat__490723111
+    };
+  stable apptState : {var nextAppointmentId : Nat; var nextToken : Nat};
+  stable auditLogs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?AuditLog__1051802162]];
+      var elementIndex : Nat__490723111
+    };
+  stable beds :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Bed__47524202]];
+      var elementIndex : Nat__490723111
+    };
+  stable billingState : {var nextBillId : Nat; var nextServiceId : Nat};
+  stable bills :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Bill__951628961]];
+      var elementIndex : Nat__490723111
+    };
+  stable consumables :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Consumable__70951173]];
+      var elementIndex : Nat__490723111
+    };
+  stable doctorState :
+    {var nextDoctorId : Nat; var nextLeaveId : Nat; var nextRosterId : Nat};
+  stable doctors :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?DoctorProfile__232778670]];
+      var elementIndex : Nat__490723111
+    };
+  stable drugs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Drug__284926595]];
+      var elementIndex : Nat__490723111
+    };
+  stable equipment :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?EquipmentItem__1045527834]];
+      var elementIndex : Nat__490723111
+    };
+  stable erState : {var nextERTriageId : Nat};
+  stable erTriages :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ERTriage__559355665]];
+      var elementIndex : Nat__490723111
+    };
+  stable hospitalProfile : {var data : ?HospitalProfile__809381767};
+  stable indents :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?IndentRequest__220370090]];
+      var elementIndex : Nat__490723111
+    };
+  stable inventoryState :
+    {
+      var nextConsumableId : Nat;
+      var nextEquipmentId : Nat;
+      var nextIndentId : Nat;
+      var nextSupplierId : Nat
+    };
+  stable labOrders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?LabOrder__46959155]];
+      var elementIndex : Nat__490723111
+    };
+  stable labState : {var nextLabOrderId : Nat};
+  stable leaves :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?LeaveRequest__636736667]];
+      var elementIndex : Nat__490723111
+    };
+  stable notifState : {var nextNotificationId : Nat};
+  stable notifications :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Notification__766161334]];
+      var elementIndex : Nat__490723111
+    };
+  stable patients :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Patient__627400254]];
+      var elementIndex : Nat__490723111
+    };
+  stable pharmacyState : {var nextDrugId : Nat; var nextOrderId : Nat};
+  stable purchaseOrders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?PurchaseOrder__673738378]];
+      var elementIndex : Nat__490723111
+    };
+  stable radiologyOrders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?RadiologyOrder__348311648]];
+      var elementIndex : Nat__490723111
+    };
+  stable radiologyState : {var nextRadiologyOrderId : Nat};
+  stable roster :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?DutyRoster__703286652]];
+      var elementIndex : Nat__490723111
+    };
+  stable services :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Service__863578874]];
+      var elementIndex : Nat__490723111
+    };
+  stable state :
+    {
+      var nextBedId : Nat;
+      var nextPatientId : Nat;
+      var nextUserId : Nat;
+      var nextWardId : Nat
+    };
+  stable suppliers :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Supplier__31340649]];
+      var elementIndex : Nat__490723111
+    };
+  stable sysState : {var nextLogId : Nat};
+  stable userState : {var nextUserId : Nat};
+  stable users :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?User__640040378]];
+      var elementIndex : Nat__490723111
+    };
+  stable visitState : {var nextVisitId : Nat};
+  stable visits :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Visit__71828991]];
+      var elementIndex : Nat__490723111
+    };
+  stable wardState : {var nextBedId : Nat; var nextWardId : Nat};
+  stable wards :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Ward__116107700]];
+      var elementIndex : Nat__490723111
+    }
+};

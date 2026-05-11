@@ -1,0 +1,660 @@
+type WorkingHours = 
+ record {
+   dayOfWeek: nat;
+   endTime: text;
+   maxPatients: nat;
+   startTime: text;
+ };
+type WardType = 
+ variant {
+   Emergency;
+   General;
+   ICU;
+   Maternity;
+   Private;
+ };
+type WardId = nat;
+type Ward = 
+ record {
+   id: WardId;
+   inchargeNurseId: opt UserId;
+   isActive: bool;
+   name: text;
+   totalBeds: nat;
+   wardType: WardType;
+ };
+type VitalSigns = 
+ record {
+   bp: text;
+   height: text;
+   pulse: text;
+   recordedAt: Timestamp;
+   spo2: text;
+   temperature: text;
+   weight: text;
+ };
+type VisitId = nat;
+type Visit = 
+ record {
+   chiefComplaint: text;
+   createdAt: Timestamp;
+   diagnoses: vec Diagnosis;
+   doctorId: DoctorId;
+   documentUrls: vec text;
+   id: VisitId;
+   patientId: PatientId;
+   prescriptions: vec Prescription;
+   soapNotes: SOAPNotes;
+   visitDate: Timestamp;
+   vitals: opt VitalSigns;
+ };
+type UserStatus = 
+ variant {
+   Active;
+   Inactive;
+   Suspended;
+ };
+type UserRole = 
+ variant {
+   Doctor;
+   LabTechnician;
+   Nurse;
+   Patient;
+   Pharmacist;
+   Receptionist;
+   SuperAdmin;
+ };
+type UserId = nat;
+type User = 
+ record {
+   createdAt: Timestamp;
+   departmentId: opt text;
+   email: text;
+   id: UserId;
+   name: text;
+   "principal": principal;
+   role: UserRole;
+   status: UserStatus;
+ };
+type Timestamp = int;
+type SupplierId = nat;
+type Supplier = 
+ record {
+   address: text;
+   categories: vec text;
+   email: text;
+   id: SupplierId;
+   name: text;
+   paymentTerms: text;
+   phone: text;
+ };
+type ShiftType = 
+ variant {
+   Afternoon;
+   Morning;
+   Night;
+ };
+type ServiceId = nat;
+type Service = 
+ record {
+   basePrice: nat;
+   category: text;
+   id: ServiceId;
+   isActive: bool;
+   name: text;
+ };
+type SOAPNotes = 
+ record {
+   assessment: text;
+   objective: text;
+   plan: text;
+   subjective: text;
+ };
+type RadiologyStatus = 
+ variant {
+   ImagingDone;
+   Ordered;
+   ReportReady;
+   Reported;
+ };
+type RadiologyOrderId = nat;
+type RadiologyOrder = 
+ record {
+   bodyPart: text;
+   clinicalIndication: text;
+   createdAt: Timestamp;
+   doctorId: DoctorId;
+   findings: opt text;
+   id: RadiologyOrderId;
+   imagingType: ImagingType;
+   patientId: PatientId;
+   radiologistId: opt UserId;
+   reportUrl: opt text;
+   status: RadiologyStatus;
+ };
+type PurchaseOrderId = nat;
+type PurchaseOrder = 
+ record {
+   createdAt: Timestamp;
+   expectedDelivery: opt text;
+   id: PurchaseOrderId;
+   items: vec POItem;
+   status: POStatus;
+   supplierId: SupplierId;
+ };
+type PrescriptionStatus = 
+ variant {
+   Dispensed;
+   Pending;
+ };
+type Prescription = 
+ record {
+   dosageForm: text;
+   dose: text;
+   drugId: opt DrugId;
+   drugName: text;
+   duration: text;
+   frequency: text;
+   notes: opt text;
+   status: PrescriptionStatus;
+ };
+type PaymentMode = 
+ variant {
+   Card;
+   Cash;
+   Insurance;
+   UPI;
+ };
+type PatientStatus = 
+ variant {
+   Admitted;
+   Discharged;
+   OPD;
+   Transferred;
+ };
+type PatientId = nat;
+type Patient = 
+ record {
+   address: text;
+   admissionDate: opt Timestamp;
+   admittedBedId: opt BedId;
+   allergies: vec text;
+   bloodGroup: text;
+   createdAt: Timestamp;
+   dischargeDate: opt Timestamp;
+   dob: text;
+   email: text;
+   emergencyContact: text;
+   firstName: text;
+   gender: text;
+   id: PatientId;
+   insuranceId: opt text;
+   insuranceProvider: opt text;
+   lastName: text;
+   mrn: text;
+   phone: text;
+   photoUrl: opt text;
+   status: PatientStatus;
+   wardId: opt WardId;
+ };
+type POStatus = 
+ variant {
+   Cancelled;
+   Draft;
+   Received;
+   Submitted;
+ };
+type POItem = 
+ record {
+   drugId: DrugId;
+   quantity: nat;
+   unitCost: nat;
+ };
+type NotificationType = 
+ variant {
+   AppointmentReminder;
+   CriticalLabAlert;
+   DrugExpiryAlert;
+   General;
+   LowStockAlert;
+   ShiftReminder;
+ };
+type NotificationPriority = 
+ variant {
+   Critical;
+   Normal;
+ };
+type NotificationId = nat;
+type Notification = 
+ record {
+   createdAt: Timestamp;
+   id: NotificationId;
+   isRead: bool;
+   message: text;
+   notificationType: NotificationType;
+   priority: NotificationPriority;
+   relatedId: opt text;
+   title: text;
+   userId: UserId;
+ };
+type LeaveStatus = 
+ variant {
+   Approved;
+   Pending;
+   Rejected;
+ };
+type LeaveRequestId = nat;
+type LeaveRequest = 
+ record {
+   createdAt: Timestamp;
+   endDate: text;
+   id: LeaveRequestId;
+   reason: text;
+   startDate: text;
+   status: LeaveStatus;
+   userId: UserId;
+ };
+type LabStatus = 
+ variant {
+   Ordered;
+   Processing;
+   Reported;
+   ResultReady;
+   SampleCollected;
+ };
+type LabOrderId = nat;
+type LabOrder = 
+ record {
+   createdAt: Timestamp;
+   doctorId: DoctorId;
+   id: LabOrderId;
+   isCritical: bool;
+   notes: opt text;
+   patientId: PatientId;
+   referenceRange: opt text;
+   resultEnteredAt: opt Timestamp;
+   resultFile: opt text;
+   resultValue: opt text;
+   sampleCollectedAt: opt Timestamp;
+   status: LabStatus;
+   testName: text;
+   testType: text;
+   visitId: opt VisitId;
+ };
+type IndentStatus = 
+ variant {
+   Approved;
+   Fulfilled;
+   Pending;
+   Rejected;
+ };
+type IndentRequest = 
+ record {
+   createdAt: Timestamp;
+   id: IndentId;
+   items: vec IndentItem;
+   requestedById: UserId;
+   status: IndentStatus;
+ };
+type IndentItem = 
+ record {
+   itemId: nat;
+   itemName: text;
+   quantity: nat;
+ };
+type IndentId = nat;
+type ImagingType = 
+ variant {
+   CT;
+   MRI;
+   Other;
+   Ultrasound;
+   XRay;
+ };
+type HousekeepingStatus = 
+ variant {
+   Clean;
+   Dirty;
+   InProgress;
+ };
+type HospitalProfile = 
+ record {
+   address: text;
+   branding: opt text;
+   currency: text;
+   email: text;
+   id: nat;
+   logoUrl: opt text;
+   name: text;
+   phone: text;
+   registrationNo: text;
+   timezone: text;
+ };
+type EquipmentStatus = 
+ variant {
+   Active;
+   Decommissioned;
+   InMaintenance;
+ };
+type EquipmentItem = 
+ record {
+   category: text;
+   cost: nat;
+   id: EquipmentId;
+   name: text;
+   nextServiceDate: opt text;
+   purchaseDate: text;
+   serialNumber: text;
+   status: EquipmentStatus;
+   wardId: opt WardId;
+ };
+type EquipmentId = nat;
+type ERTriageId = nat;
+type ERTriage = 
+ record {
+   arrivalTime: Timestamp;
+   bedId: opt BedId;
+   chiefComplaint: text;
+   dischargedAt: opt Timestamp;
+   esiLevel: int;
+   id: ERTriageId;
+   isTraumaCase: bool;
+   isUnknownPatient: bool;
+   patientId: opt PatientId;
+   status: ERStatus;
+   treatedByDoctorId: opt DoctorId;
+ };
+type ERStatus = 
+ variant {
+   Discharged;
+   InTreatment;
+   Waiting;
+ };
+type DutyRosterId = nat;
+type DutyRoster = 
+ record {
+   date: text;
+   id: DutyRosterId;
+   shift: ShiftType;
+   status: text;
+   userId: UserId;
+   wardId: opt WardId;
+ };
+type DrugId = nat;
+type Drug = 
+ record {
+   batchNo: text;
+   category: text;
+   costPrice: nat;
+   dosageForm: text;
+   expiryDate: text;
+   genericName: text;
+   id: DrugId;
+   isActive: bool;
+   name: text;
+   quantityOnHand: nat;
+   reorderLevel: nat;
+   sellingPrice: nat;
+   strength: text;
+   supplierId: opt SupplierId;
+ };
+type DoctorProfile = 
+ record {
+   consultationFee: nat;
+   departmentId: opt text;
+   id: DoctorId;
+   qualifications: vec text;
+   schedule: vec WorkingHours;
+   specialization: text;
+   userId: UserId;
+   wardIds: vec text;
+ };
+type DoctorId = nat;
+type DiagnosisType = 
+ variant {
+   Primary;
+   Secondary;
+ };
+type Diagnosis = 
+ record {
+   description: text;
+   diagnosisType: DiagnosisType;
+   icd10Code: text;
+ };
+type ConsumableId = nat;
+type Consumable = 
+ record {
+   id: ConsumableId;
+   name: text;
+   quantity: nat;
+   reorderLevel: nat;
+   supplierId: opt SupplierId;
+   unitCost: nat;
+ };
+type BillType = 
+ variant {
+   IPD;
+   OPD;
+ };
+type BillStatus = 
+ variant {
+   Paid;
+   PartiallyPaid;
+   Pending;
+   Refunded;
+ };
+type BillItem = 
+ record {
+   quantity: nat;
+   serviceId: ServiceId;
+   serviceName: text;
+   total: nat;
+   unitPrice: nat;
+ };
+type BillId = nat;
+type Bill = 
+ record {
+   billType: BillType;
+   createdAt: Timestamp;
+   discountPercent: nat;
+   id: BillId;
+   insuranceClaimId: opt text;
+   items: vec BillItem;
+   paidAmount: nat;
+   patientId: PatientId;
+   paymentMode: opt PaymentMode;
+   status: BillStatus;
+   subtotal: nat;
+   totalAmount: nat;
+   visitId: opt VisitId;
+ };
+type BedStatus = 
+ variant {
+   Available;
+   Maintenance;
+   Occupied;
+   Reserved;
+ };
+type BedId = nat;
+type Bed = 
+ record {
+   bedNumber: text;
+   housekeepingStatus: HousekeepingStatus;
+   id: BedId;
+   notes: opt text;
+   patientId: opt PatientId;
+   status: BedStatus;
+   wardId: WardId;
+ };
+type AuditLog = 
+ record {
+   action: text;
+   details: text;
+   entityId: text;
+   entityType: text;
+   id: nat;
+   timestamp: Timestamp;
+   userId: UserId;
+ };
+type AppointmentType = 
+ variant {
+   OPD;
+   Telemedicine;
+ };
+type AppointmentStatus = 
+ variant {
+   Cancelled;
+   Completed;
+   Confirmed;
+   InProgress;
+   Scheduled;
+ };
+type AppointmentId = nat;
+type Appointment = 
+ record {
+   appointmentType: AppointmentType;
+   cancellationReason: opt text;
+   createdAt: Timestamp;
+   date: text;
+   doctorId: DoctorId;
+   id: AppointmentId;
+   notes: opt text;
+   patientId: PatientId;
+   status: AppointmentStatus;
+   timeSlot: text;
+   tokenNumber: nat;
+ };
+service : {
+  admitPatient: (patientId: PatientId, bedId: BedId, wardId: WardId) ->
+   (bool);
+  cancelAppointment: (id: AppointmentId, reason: text) -> (bool);
+  createAppointment: (patientId: PatientId, doctorId: DoctorId, date: 
+   text, timeSlot: text, appointmentType: AppointmentType, notes:
+   opt text) -> (Appointment);
+  createBed: (wardId: WardId, bedNumber: text) -> (Bed);
+  createBill: (patientId: PatientId, visitId: opt VisitId, billType:
+   BillType, items: vec BillItem, discountPercent: nat, paymentMode:
+   opt PaymentMode) -> (Bill);
+  createConsumable: (name: text, quantity: nat, reorderLevel: nat, unitCost:
+   nat, supplierId: opt SupplierId) -> (Consumable);
+  createDoctorProfile: (userId: UserId, specialization: text, qualifications:
+   vec text, departmentId: opt text, consultationFee: nat, schedule:
+   vec WorkingHours) -> (DoctorProfile);
+  createDrug: (name: text, genericName: text, dosageForm: text, strength:
+   text, category: text, quantityOnHand: nat, reorderLevel: nat, expiryDate:
+   text, batchNo: text, costPrice: nat, sellingPrice: nat, supplierId:
+   opt SupplierId) -> (Drug);
+  createDutyRosterEntry: (userId: UserId, date: text, shift: ShiftType,
+   wardId: opt WardId) -> (DutyRoster);
+  createERTriage: (patientId: opt PatientId, esiLevel: int, chiefComplaint:
+   text, isTraumaCase: bool, isUnknownPatient: bool, bedId: opt BedId) ->
+   (ERTriage);
+  createEquipmentItem: (name: text, category: text, serialNumber: text,
+   purchaseDate: text, cost: nat, wardId: opt WardId) -> (EquipmentItem);
+  createIndentRequest: (requestedById: UserId, items: vec IndentItem) ->
+   (IndentRequest);
+  createLabOrder: (patientId: PatientId, doctorId: DoctorId, visitId:
+   opt VisitId, testType: text, testName: text) -> (LabOrder);
+  createLeaveRequest: (userId: UserId, startDate: text, endDate: text,
+   reason: text) -> (LeaveRequest);
+  createNotification: (userId: UserId, notificationType: NotificationType,
+   title: text, message: text, priority: NotificationPriority, relatedId:
+   opt text) -> (Notification);
+  createPatient: (firstName: text, lastName: text, dob: text, gender: 
+   text, bloodGroup: text, phone: text, email: text, address: text,
+   emergencyContact: text) -> (Patient);
+  createPurchaseOrder: (supplierId: SupplierId, items: vec POItem,
+   expectedDelivery: opt text) -> (PurchaseOrder);
+  createRadiologyOrder: (patientId: PatientId, doctorId: DoctorId,
+   imagingType: ImagingType, bodyPart: text, clinicalIndication: text) ->
+   (RadiologyOrder);
+  createService: (name: text, category: text, basePrice: nat) -> (Service);
+  createSupplier: (name: text, phone: text, email: text, address: text,
+   categories: vec text, paymentTerms: text) -> (Supplier);
+  createUser: ("principal": principal, name: text, email: text, role:
+   UserRole, departmentId: opt text) -> (User);
+  createVisit: (patientId: PatientId, doctorId: DoctorId, chiefComplaint:
+   text, soapNotes: SOAPNotes, diagnoses: vec Diagnosis, prescriptions:
+   vec Prescription, vitals: opt VitalSigns) -> (Visit);
+  createWard: (name: text, wardType: WardType, totalBeds: nat,
+   inchargeNurseId: opt UserId) -> (Ward);
+  dischargePatient: (patientId: PatientId) -> (bool);
+  dispensePrescription: (visitId: VisitId, drugName: text) -> (bool);
+  getActiveERTriages: () -> (vec ERTriage) query;
+  getAppointments: () -> (vec Appointment) query;
+  getAppointmentsByDoctor: (doctorId: DoctorId) -> (vec Appointment) query;
+  getAppointmentsByPatient: (patientId: PatientId) -> (vec Appointment) query;
+  getAuditLogs: () -> (vec AuditLog) query;
+  getBeds: () -> (vec Bed) query;
+  getBedsByWard: (wardId: WardId) -> (vec Bed) query;
+  getBill: (id: BillId) -> (opt Bill) query;
+  getBills: () -> (vec Bill) query;
+  getBillsByPatient: (patientId: PatientId) -> (vec Bill) query;
+  getConsumables: () -> (vec Consumable) query;
+  getDoctor: (id: DoctorId) -> (opt DoctorProfile) query;
+  getDoctors: () -> (vec DoctorProfile) query;
+  getDrug: (id: DrugId) -> (opt Drug) query;
+  getDrugs: () -> (vec Drug) query;
+  getDutyRoster: () -> (vec DutyRoster) query;
+  getERTriages: () -> (vec ERTriage) query;
+  getEquipment: () -> (vec EquipmentItem) query;
+  getHospitalProfile: () -> (opt HospitalProfile) query;
+  getIndentRequests: () -> (vec IndentRequest) query;
+  getLabOrder: (id: LabOrderId) -> (opt LabOrder) query;
+  getLabOrders: () -> (vec LabOrder) query;
+  getLabOrdersByPatient: (patientId: PatientId) -> (vec LabOrder) query;
+  getLeaveRequests: () -> (vec LeaveRequest) query;
+  getLowStockDrugs: () -> (vec Drug) query;
+  getNotifications: (userId: UserId) -> (vec Notification) query;
+  getOPDQueue: (doctorId: DoctorId, date: text) -> (vec Appointment) query;
+  getPatient: (id: PatientId) -> (opt Patient) query;
+  getPatients: () -> (vec Patient) query;
+  getPrescriptions: (patientId: PatientId) -> (vec Prescription) query;
+  getPrescriptionsByPatient: (patientId: PatientId) ->
+   (vec Prescription) query;
+  getPurchaseOrders: () -> (vec PurchaseOrder) query;
+  getRadiologyOrders: () -> (vec RadiologyOrder) query;
+  getRadiologyOrdersByPatient: (patientId: PatientId) ->
+   (vec RadiologyOrder) query;
+  getServices: () -> (vec Service) query;
+  getSuppliers: () -> (vec Supplier) query;
+  getUser: (id: UserId) -> (opt User) query;
+  getUsers: () -> (vec User) query;
+  getVisit: (id: VisitId) -> (opt Visit) query;
+  getVisits: () -> (vec Visit) query;
+  getVisitsByPatient: (patientId: PatientId) -> (vec Visit) query;
+  getWard: (id: WardId) -> (opt Ward) query;
+  getWards: () -> (vec Ward) query;
+  initSampleData: () -> (text);
+  markAllNotificationsRead: (userId: UserId) -> ();
+  markNotificationRead: (id: NotificationId) -> (bool);
+  transferPatient: (patientId: PatientId, newWardId: WardId, newBedId:
+   BedId) -> (bool);
+  updateAppointment: (id: AppointmentId, date: text, timeSlot: text, notes:
+   opt text) -> (bool);
+  updateBedStatus: (bedId: BedId, status: BedStatus, housekeepingStatus:
+   HousekeepingStatus, notes: opt text) -> (bool);
+  updateBillPayment: (id: BillId, paidAmount: nat, paymentMode:
+   PaymentMode) -> (bool);
+  updateDrugStock: (drugId: DrugId, quantityChange: int) -> (bool);
+  updateERTriage: (id: ERTriageId, status: ERStatus, treatedByDoctorId:
+   opt DoctorId, bedId: opt BedId) -> (bool);
+  updateHospitalProfile: (name: text, address: text, phone: text, email:
+   text, registrationNo: text, timezone: text, currency: text) ->
+   (HospitalProfile);
+  updateIndentStatus: (id: IndentId, status: IndentStatus) -> (bool);
+  updateLabOrderResult: (id: LabOrderId, resultValue: opt text, resultFile:
+   opt text, isCritical: bool, referenceRange: opt text, notes: opt text) ->
+   (bool);
+  updateLabOrderStatus: (id: LabOrderId, status: LabStatus) -> (bool);
+  updateLeaveStatus: (id: LeaveRequestId, status: LeaveStatus) -> (bool);
+  updatePatient: (id: PatientId, firstName: text, lastName: text, phone:
+   text, email: text, address: text, allergies: vec text, bloodGroup: 
+   text, insuranceId: opt text, insuranceProvider: opt text) -> (bool);
+  updateRadiologyReport: (id: RadiologyOrderId, reportUrl: opt text,
+   findings: opt text, radiologistId: opt UserId, status: RadiologyStatus) ->
+   (bool);
+  updateUserStatus: (id: UserId, status: UserStatus) -> (bool);
+  updateVisit: (id: VisitId, soapNotes: SOAPNotes, diagnoses: vec Diagnosis,
+   prescriptions: vec Prescription, vitals: opt VitalSigns) -> (bool);
+}

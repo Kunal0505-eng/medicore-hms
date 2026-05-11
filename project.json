@@ -1,0 +1,35 @@
+{
+  "overview": "MediCore HMS is a full-stack Hospital Management System covering all 14 operational modules — from patient registration and EMR to pharmacy, lab, billing, radiology, emergency department, and analytics. Built for 7 roles with role-based access control and a clean navy/teal medical aesthetic.",
+  "features": [
+    "Role-based access for 7 roles: Admin, Doctor, Nurse, Receptionist, Pharmacist, Lab Technician, Patient",
+    "Patient registration (OPD/IPD) with full profiles, admission, discharge, and transfer workflows",
+    "Appointment scheduling with doctor calendar, OPD token queue, and real-time availability",
+    "Electronic Medical Records: SOAP notes, ICD-10 diagnoses, prescriptions, vital signs, document uploads",
+    "Laboratory: test ordering, sample tracking, result entry, critical value alerts, EMR integration",
+    "Pharmacy: prescription dispensing, drug inventory with expiry tracking, low-stock alerts, purchase orders",
+    "Ward & Bed Management: visual bed map across ICU/General/Private/Maternity/Emergency wards, real-time ER polling",
+    "Billing & Finance: OPD/IPD bill generation, insurance claims, multi-payment modes, financial dashboard",
+    "Radiology: imaging orders (X-ray/MRI/CT/Ultrasound), report upload, EMR linking",
+    "Emergency Department: ESI triage (1-5), ER bed map with 5s polling, trauma case management",
+    "Inventory & Supplies: equipment tracking, consumables, requisition system, vendor management",
+    "Reports & Analytics: Recharts dashboards covering revenue, patient demographics, bed occupancy, pharmacy sales",
+    "In-app Notifications: appointment reminders, critical lab alerts, drug expiry, low stock, shift reminders",
+    "System Administration: hospital setup, department/ward config, user management, audit logs, system settings",
+    "Pre-loaded sample data: 10 patients, 5 doctors, 3 wards, 20 drugs, 10 lab tests, 5 service types",
+    "Dark mode, responsive design, data tables with sort/filter/pagination, modal forms, loading skeletons"
+  ],
+  "category": "healthcare",
+  "tags": [
+    "hospital",
+    "healthcare",
+    "emr",
+    "patient-management",
+    "medical",
+    "clinic",
+    "billing",
+    "pharmacy",
+    "laboratory",
+    "scheduling"
+  ],
+  "last_updated": "2026-05-11T07:41:33.712Z"
+}
