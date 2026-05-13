@@ -165,9 +165,9 @@ function ReceiptView({
     <div>
       <div ref={receiptRef}>
         <div className="border-b border-border pb-4 mb-4">
-          <h2 className="text-lg font-bold">MediCore HMS</h2>
+          <h2 className="text-lg font-bold">Lal Bahadur Shastri Hospital</h2>
           <p className="text-xs text-muted-foreground">
-            123 Medical Road, Mumbai • +91 22 4567 8900
+            Hospital Road, New Delhi • +91 11 2345 6789
           </p>
         </div>
         <div className="flex justify-between mb-4">
@@ -259,7 +259,7 @@ function ReceiptView({
         </div>
 
         <div className="mt-6 text-center text-xs text-muted-foreground">
-          Thank you for choosing MediCore HMS.
+          Thank you for choosing Lal Bahadur Shastri Hospital.
         </div>
       </div>
 

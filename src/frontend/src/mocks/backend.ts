@@ -4,9 +4,16 @@ import { AppointmentStatus, AppointmentType, BedStatus, BillStatus, BillType, ER
 const now = BigInt(Date.now()) * BigInt(1_000_000);
 
 const samplePatients: Patient[] = [
-  { id: BigInt(1), mrn: "MRN-001", firstName: "Priya", lastName: "Sharma", dob: "1985-03-12", gender: "Female", bloodGroup: "O+", phone: "9876543210", email: "priya@example.com", address: "123 MG Road, Bangalore", emergencyContact: "9876543211", allergies: ["Penicillin"], status: PatientStatus.OPD, createdAt: now },
-  { id: BigInt(2), mrn: "MRN-002", firstName: "Rahul", lastName: "Verma", dob: "1990-07-25", gender: "Male", bloodGroup: "A+", phone: "9876543212", email: "rahul@example.com", address: "456 Park St, Mumbai", emergencyContact: "9876543213", allergies: [], status: PatientStatus.Admitted, createdAt: now, wardId: BigInt(1), admittedBedId: BigInt(1), admissionDate: now },
-  { id: BigInt(3), mrn: "MRN-003", firstName: "Anita", lastName: "Patel", dob: "1978-11-08", gender: "Female", bloodGroup: "B-", phone: "9876543214", email: "anita@example.com", address: "789 Lake View, Pune", emergencyContact: "9876543215", allergies: ["Sulfa"], status: PatientStatus.Discharged, createdAt: now },
+  { id: BigInt(1), mrn: "MRN-001", firstName: "Aarav", lastName: "Sharma", dob: "1985-03-12", gender: "Male", bloodGroup: "O+", phone: "+91 98765 43210", email: "aarav.sharma@gmail.com", address: "14 Rajpur Road, Civil Lines, Delhi 110054", emergencyContact: "+91 98765 43211", allergies: ["Penicillin"], status: PatientStatus.OPD, createdAt: now },
+  { id: BigInt(2), mrn: "MRN-002", firstName: "Priya", lastName: "Iyer", dob: "1990-07-25", gender: "Female", bloodGroup: "A+", phone: "+91 99887 76655", email: "priya.iyer@yahoo.in", address: "22 Bandra West, Mumbai 400050", emergencyContact: "+91 99887 76656", allergies: [], status: PatientStatus.Admitted, createdAt: now, wardId: BigInt(1), admittedBedId: BigInt(1), admissionDate: now },
+  { id: BigInt(3), mrn: "MRN-003", firstName: "Suresh", lastName: "Reddy", dob: "1972-11-08", gender: "Male", bloodGroup: "B-", phone: "+91 91234 56789", email: "suresh.reddy@outlook.com", address: "5 Jubilee Hills, Hyderabad 500033", emergencyContact: "+91 91234 56790", allergies: ["Sulfa"], status: PatientStatus.Discharged, createdAt: now },
+  { id: BigInt(4), mrn: "MRN-004", firstName: "Kavita", lastName: "Nair", dob: "1995-05-20", gender: "Female", bloodGroup: "AB+", phone: "+91 90011 22334", email: "kavita.nair@gmail.com", address: "8 Koregaon Park, Pune 411001", emergencyContact: "+91 90011 22335", allergies: [], status: PatientStatus.OPD, createdAt: now },
+  { id: BigInt(5), mrn: "MRN-005", firstName: "Vikram", lastName: "Singh", dob: "1968-09-14", gender: "Male", bloodGroup: "O-", phone: "+91 87654 32109", email: "vikram.singh@rediffmail.com", address: "45 Hazratganj, Lucknow 226001", emergencyContact: "+91 87654 32110", allergies: ["Aspirin"], status: PatientStatus.Admitted, createdAt: now, wardId: BigInt(2), admittedBedId: BigInt(3), admissionDate: now },
+  { id: BigInt(6), mrn: "MRN-006", firstName: "Meera", lastName: "Desai", dob: "1980-01-30", gender: "Female", bloodGroup: "B+", phone: "+91 78901 23456", email: "meera.desai@gmail.com", address: "17 CG Road, Navrangpura, Ahmedabad 380009", emergencyContact: "+91 78901 23457", allergies: [], status: PatientStatus.OPD, createdAt: now },
+  { id: BigInt(7), mrn: "MRN-007", firstName: "Arjun", lastName: "Bose", dob: "1988-06-17", gender: "Male", bloodGroup: "A-", phone: "+91 76543 21098", email: "arjun.bose@gmail.com", address: "32 Park Street, Kolkata 700016", emergencyContact: "+91 76543 21099", allergies: ["Codeine"], status: PatientStatus.OPD, createdAt: now },
+  { id: BigInt(8), mrn: "MRN-008", firstName: "Sunita", lastName: "Gupta", dob: "1975-12-03", gender: "Female", bloodGroup: "O+", phone: "+91 98123 45678", email: "sunita.gupta@gmail.com", address: "9 MI Road, Jaipur 302001", emergencyContact: "+91 98123 45679", allergies: [], status: PatientStatus.Admitted, createdAt: now, wardId: BigInt(1), admittedBedId: BigInt(2), admissionDate: now },
+  { id: BigInt(9), mrn: "MRN-009", firstName: "Ravi", lastName: "Chandran", dob: "1962-04-22", gender: "Male", bloodGroup: "AB-", phone: "+91 94321 09876", email: "ravi.chandran@outlook.com", address: "56 Anna Salai, Chennai 600002", emergencyContact: "+91 94321 09877", allergies: ["NSAIDs"], status: PatientStatus.Discharged, createdAt: now },
+  { id: BigInt(10), mrn: "MRN-010", firstName: "Pooja", lastName: "Malhotra", dob: "1992-08-09", gender: "Female", bloodGroup: "A+", phone: "+91 93210 98765", email: "pooja.malhotra@gmail.com", address: "3 Sector 17, Chandigarh 160017", emergencyContact: "+91 93210 98766", allergies: [], status: PatientStatus.OPD, createdAt: now },
 ];
 
 const sampleDoctors: DoctorProfile[] = [
@@ -67,11 +74,11 @@ const sampleNotifications: Notification[] = [
 
 const sampleHospitalProfile: HospitalProfile = {
   id: BigInt(1),
-  name: "MedCare Hospital",
-  email: "info@medcare.com",
-  phone: "+91-80-12345678",
-  address: "123 Healthcare Avenue, Bangalore, Karnataka 560001",
-  registrationNo: "KA-HOSP-2024-001",
+  name: "Lal Bahadur Shastri Hospital",
+  email: "info@lbshospital.in",
+  phone: "+91-11-2345-6789",
+  address: "Hospital Road, GTB Nagar, New Delhi 110009",
+  registrationNo: "DL-HOSP-2024-001",
   timezone: "Asia/Kolkata",
   currency: "INR",
 };
@@ -117,7 +124,7 @@ const sampleDutyRoster: DutyRoster[] = [
 ];
 
 const sampleAuditLogs: AuditLog[] = [
-  { id: BigInt(1), userId: BigInt(1), action: "CREATE", entityType: "Patient", entityId: "1", details: "Registered new patient: Priya Sharma", timestamp: now },
+  { id: BigInt(1), userId: BigInt(1), action: "CREATE", entityType: "Patient", entityId: "1", details: "Registered new patient: Aarav Sharma", timestamp: now },
   { id: BigInt(2), userId: BigInt(2), action: "UPDATE", entityType: "Visit", entityId: "1", details: "Updated SOAP notes for patient", timestamp: now },
 ];
 

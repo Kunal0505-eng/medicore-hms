@@ -190,10 +190,10 @@ export function Sidebar({ collapsed, onClose }: SidebarProps) {
         {!collapsed && (
           <div className="overflow-hidden">
             <p className="font-bold text-foreground text-sm leading-tight">
-              St. Jude
+              LBS Hospital
             </p>
             <p className="text-[10px] text-muted-foreground">
-              General Hospital
+              Lal Bahadur Shastri Hospital
             </p>
           </div>
         )}

@@ -88,7 +88,7 @@ mixin (
     };
 
     // ── Hospital profile ─────────────────────────────────────────────────────
-    ignore SystemLib.updateProfile(hospitalProfile, "City General Hospital", "123 Medical Drive, Healthcare City", "+1-555-0100", "admin@citygeneral.hospital", "CGH-2024-001", "UTC", "USD");
+    ignore SystemLib.updateProfile(hospitalProfile, "Lal Bahadur Shastri Hospital", "Ring Road, New Delhi, Delhi 110044", "+91-11-2300-0100", "info@lbshospital.in", "LBS-2024-001", "Asia/Kolkata", "INR");
 
     // ── Demo users (7 roles) ─────────────────────────────────────────────────
     let anonP = Principal.fromText("2vxsx-fae");
@@ -150,16 +150,16 @@ mixin (
     ignore erB2;
 
     // ── Patients (10) ─────────────────────────────────────────────────────────
-    let p1 = PatientLib.create(patients, patientState, "John", "Smith", "1980-03-15", "Male", "A+", "+1-555-0201", "john.smith@email.com", "456 Oak St, Springfield", "Jane Smith +1-555-0202");
-    let p2 = PatientLib.create(patients, patientState, "Maria", "Garcia", "1975-07-22", "Female", "B+", "+1-555-0203", "maria.garcia@email.com", "789 Elm Ave, Springfield", "Carlos Garcia +1-555-0204");
-    let p3 = PatientLib.create(patients, patientState, "Robert", "Johnson", "1990-11-05", "Male", "O+", "+1-555-0205", "robert.j@email.com", "321 Pine Rd, Springfield", "Linda Johnson +1-555-0206");
-    let p4 = PatientLib.create(patients, patientState, "Emily", "Davis", "1965-02-28", "Female", "AB+", "+1-555-0207", "emily.d@email.com", "654 Maple Dr, Springfield", "Tom Davis +1-555-0208");
-    let p5 = PatientLib.create(patients, patientState, "Michael", "Brown", "1985-09-10", "Male", "A-", "+1-555-0209", "mike.b@email.com", "987 Cedar Ln, Springfield", "Sarah Brown +1-555-0210");
-    let p6 = PatientLib.create(patients, patientState, "Lisa", "Wilson", "1955-12-01", "Female", "B-", "+1-555-0211", "lisa.w@email.com", "147 Birch Blvd, Springfield", "Bob Wilson +1-555-0212");
-    let p7 = PatientLib.create(patients, patientState, "David", "Taylor", "2000-06-14", "Male", "O-", "+1-555-0213", "david.t@email.com", "258 Walnut Way, Springfield", "Kim Taylor +1-555-0214");
-    let p8 = PatientLib.create(patients, patientState, "Jennifer", "Anderson", "1970-04-19", "Female", "AB-", "+1-555-0215", "jen.a@email.com", "369 Spruce St, Springfield", "Mark Anderson +1-555-0216");
-    let p9 = PatientLib.create(patients, patientState, "William", "Thomas", "1945-08-30", "Male", "A+", "+1-555-0217", "will.t@email.com", "741 Ash Ave, Springfield", "Mary Thomas +1-555-0218");
-    let p10 = PatientLib.create(patients, patientState, "Patricia", "Lee", "1995-01-07", "Female", "B+", "+1-555-0219", "pat.lee@email.com", "852 Hickory Rd, Springfield", "Chris Lee +1-555-0220");
+    let p1 = PatientLib.create(patients, patientState, "Rajesh", "Kumar", "1978-03-15", "Male", "A+", "+91-9810001001", "rajesh.kumar@gmail.com", "12 Lajpat Nagar, New Delhi, Delhi 110024", "Sunita Kumar +91-9810001002");
+    let p2 = PatientLib.create(patients, patientState, "Sunita", "Devi", "1985-07-22", "Female", "B+", "+91-9415002001", "sunita.devi@gmail.com", "45 Hazratganj, Lucknow, UP 226001", "Rakesh Devi +91-9415002002");
+    let p3 = PatientLib.create(patients, patientState, "Amit", "Sharma", "1990-11-05", "Male", "O+", "+91-9415003001", "amit.sharma@gmail.com", "78 Civil Lines, Kanpur, UP 208001", "Rekha Sharma +91-9415003002");
+    let p4 = PatientLib.create(patients, patientState, "Priya", "Singh", "1995-02-18", "Female", "AB+", "+91-9557004001", "priya.singh@yahoo.in", "23 Sadar Bazar, Agra, UP 282001", "Vikas Singh +91-9557004002");
+    let p5 = PatientLib.create(patients, patientState, "Vikas", "Yadav", "1982-09-30", "Male", "A-", "+91-9415005001", "vikas.yadav@gmail.com", "56 Lanka, Varanasi, UP 221005", "Geeta Yadav +91-9415005002");
+    let p6 = PatientLib.create(patients, patientState, "Meena", "Gupta", "1970-04-10", "Female", "B-", "+91-9415006001", "meena.gupta@yahoo.in", "34 Colonelganj, Allahabad, UP 211002", "Suresh Gupta +91-9415006002");
+    let p7 = PatientLib.create(patients, patientState, "Suresh", "Patel", "1965-12-25", "Male", "O-", "+91-9456007001", "suresh.patel@gmail.com", "89 Dampier Nagar, Mathura, UP 281001", "Kiran Patel +91-9456007002");
+    let p8 = PatientLib.create(patients, patientState, "Kavita", "Mishra", "1988-06-14", "Female", "AB-", "+91-9456008001", "kavita.mishra@gmail.com", "67 Civil Lines, Bareilly, UP 243001", "Ajay Mishra +91-9456008002");
+    let p9 = PatientLib.create(patients, patientState, "Rohit", "Verma", "2000-01-20", "Male", "A+", "+91-9456009001", "rohit.verma@gmail.com", "14 Shastri Nagar, Meerut, UP 250002", "Anita Verma +91-9456009002");
+    let p10 = PatientLib.create(patients, patientState, "Anita", "Joshi", "1975-08-07", "Female", "B+", "+91-9456010001", "anita.joshi@yahoo.in", "29 Rapti Nagar, Gorakhpur, UP 273015", "Rakesh Joshi +91-9456010002");
     ignore p4; ignore p5; ignore p6; ignore p7; ignore p8; ignore p10;
 
     // Admit 3 patients
@@ -268,7 +268,7 @@ mixin (
     ignore NotificationLib.create(notifications, notifState, u9.id, #LowStockAlert, "Low Stock Alert", "Azithromycin stock below reorder level (5 units)", #Critical, ?"14");
     ignore NotificationLib.create(notifications, notifState, u9.id, #LowStockAlert, "Low Stock Alert", "Prednisolone stock below reorder level (8 units)", #Normal, ?"19");
     // Critical lab alert to doctor
-    ignore NotificationLib.create(notifications, notifState, u2.id, #CriticalLabAlert, "Critical Lab Value", "TSH critically elevated (8.5 mIU/L) for patient Maria Garcia", #Critical, ?"2");
+    ignore NotificationLib.create(notifications, notifState, u2.id, #CriticalLabAlert, "Critical Lab Value", "TSH critically elevated (8.5 mIU/L) for patient Sunita Devi", #Critical, ?"2");
 
     "Sample data loaded: 10 patients, 5 doctors, 3 wards + Emergency ward, 20 drugs, 10 lab tests, 5 services, demo users for all 7 roles";
   };

@@ -138,7 +138,7 @@ export function DashboardPage() {
     <div className="space-y-6" data-ocid="dashboard.page">
       <PageHeader
         title={`Good ${new Date().getHours() < 12 ? "Morning" : new Date().getHours() < 17 ? "Afternoon" : "Evening"}, ${user?.name?.split(" ")[0]}`}
-        description={`${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} — St. Jude General Hospital`}
+        description={`${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })} — Lal Bahadur Shastri Hospital`}
       />
 
       <div

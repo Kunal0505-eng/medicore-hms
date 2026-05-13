@@ -24,7 +24,7 @@ const DEMO_USERS: (AuthUser & {
     id: "admin-001",
     name: "Dr. Admin",
     role: "SuperAdmin" as UserRole,
-    email: "admin@stjude.hospital",
+    email: "admin@lbshospital.in",
     avatar: "A",
     department: "Administration",
     userId: BigInt(1),
@@ -36,7 +36,7 @@ const DEMO_USERS: (AuthUser & {
     id: "doc-001",
     name: "Dr. Alex Chen",
     role: "Doctor" as UserRole,
-    email: "alex.chen@stjude.hospital",
+    email: "alex.chen@lbshospital.in",
     avatar: "A",
     department: "Cardiology",
     userId: BigInt(2),
@@ -48,7 +48,7 @@ const DEMO_USERS: (AuthUser & {
     id: "nur-001",
     name: "Nurse Sarah Wilson",
     role: "Nurse" as UserRole,
-    email: "sarah.wilson@stjude.hospital",
+    email: "sarah.wilson@lbshospital.in",
     avatar: "S",
     department: "ICU",
     userId: BigInt(3),
@@ -60,7 +60,7 @@ const DEMO_USERS: (AuthUser & {
     id: "rec-001",
     name: "James Carter",
     role: "Receptionist" as UserRole,
-    email: "james.carter@stjude.hospital",
+    email: "james.carter@lbshospital.in",
     avatar: "J",
     department: "Front Desk",
     userId: BigInt(4),
@@ -72,7 +72,7 @@ const DEMO_USERS: (AuthUser & {
     id: "pharm-001",
     name: "Maria Lopez",
     role: "Pharmacist" as UserRole,
-    email: "maria.lopez@stjude.hospital",
+    email: "maria.lopez@lbshospital.in",
     avatar: "M",
     department: "Pharmacy",
     userId: BigInt(5),
@@ -84,7 +84,7 @@ const DEMO_USERS: (AuthUser & {
     id: "lab-001",
     name: "David Kim",
     role: "LabTechnician" as UserRole,
-    email: "david.kim@stjude.hospital",
+    email: "david.kim@lbshospital.in",
     avatar: "D",
     department: "Laboratory",
     userId: BigInt(6),
@@ -150,9 +150,9 @@ export function LoginPage() {
               />
             </div>
             <div>
-              <p className="font-bold text-foreground text-xl">St. Jude</p>
+              <p className="font-bold text-foreground text-xl">LBS Hospital</p>
               <p className="text-xs text-muted-foreground">
-                General Hospital — HMS
+                Lal Bahadur Shastri Hospital
               </p>
             </div>
           </div>
@@ -191,7 +191,7 @@ export function LoginPage() {
               />
             </div>
             <div>
-              <p className="font-bold text-foreground">St. Jude HMS</p>
+              <p className="font-bold text-foreground">LBS Hospital</p>
             </div>
           </div>
 
